@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  * {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  /* Inter font optimizations */
+  body {
+    font-feature-settings: 'liga' 1, 'calt' 1; /* Ligatures and contextual alternates */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* Custom primary colors */
+:root {
+  --primary-50: #f5f6f8;
+  --primary-100: #e8eaed;
+  --primary-500: #21467e;
+  --primary-600: #1e3e73;
+  --primary-700: #1a3667;
+  --primary-800: #162e5b;
+  --primary-900: #11254f;
+}
+
+/* Custom navbar styles */
+.navbar-bg {
+  background: #2d3748;
+}
+
+.search-container {
+  background: #edf2f7;
+}
