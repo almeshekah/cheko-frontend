@@ -1,0 +1,12 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "welcome": "Welcome to Cheko"
+  },
+  "navigation": {
+    "home": "Home",
+    "map": "Map"
+  },
+  "search": "Search",
+  "filter": "Filter"
+}
