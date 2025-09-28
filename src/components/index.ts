@@ -5,3 +5,4 @@ export { default as NavigationTabs } from './NavigationTabs';
 export { default as DarkModeToggle } from './DarkModeToggle';
 export { default as LanguageToggle } from './LanguageToggle';
 export { default as CategoryItem } from './CategoryItem';
+export { default as MenuItem } from './MenuItem';

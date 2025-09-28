@@ -10,7 +10,19 @@ import DarkModeToggle from '../DarkModeToggle';
 import LanguageToggle from '../LanguageToggle';
 import hedarNaveSvg from '../../assets/svg/hedarNave.svg';
 
-const Navbar: FC = () => {
+interface NavbarProps {
+  filterOptions: { label: string; value: string }[];
+  onSearch: (query: string) => void;
+  onFilter: (filterValue: string) => void;
+  onSearchSubmit: () => void;
+}
+
+const Navbar: FC<NavbarProps> = ({
+  filterOptions,
+  onSearch,
+  onFilter,
+  onSearchSubmit,
+}) => {
   const { t, i18n } = useTranslation();
   const { language, dir } = i18n;
 
@@ -29,21 +41,6 @@ const Navbar: FC = () => {
       path: '/map',
     },
   ];
-
-  const filterOptions = [
-    { label: 'All Categories', value: 'all' },
-    { label: 'Category 1', value: 'cat1' },
-    { label: 'Category 2', value: 'cat2' },
-    { label: 'Category 3', value: 'cat3' },
-  ];
-
-  const handleSearch = (query: string) => {
-    console.log('Search query:', query);
-  };
-
-  const handleFilter = (filterValue: string) => {
-    console.log('Filter value:', filterValue);
-  };
 
   return (
     <nav className='font-inter relative flex items-center'>
@@ -74,14 +71,15 @@ const Navbar: FC = () => {
                   className='flex-1 flex flex-col sm:flex-row items-stretch sm:items-center bg-white dark:bg-gray-700 rounded-[15px] px-3 sm:px-4 py-3 gap-3 sm:gap-0'
                   style={{ boxShadow: '0px 4px 14px 0px rgba(0, 0, 0, 0.05)' }}>
                   <div className='w-full sm:flex-1'>
-                    <Search onSearch={handleSearch} />
+                    <Search onSearch={onSearch} />
                   </div>
                   <div className='hidden sm:block w-px h-10 bg-gray-300 dark:bg-gray-600 mx-4'></div>
                   <div className='flex flex-col sm:flex-row w-full sm:w-auto gap-3 sm:gap-0'>
                     <div className='flex-1 sm:flex-none sm:min-w-[200px]'>
-                      <Filter options={filterOptions} onFilter={handleFilter} />
+                      <Filter options={filterOptions} onFilter={onFilter} />
                     </div>
                     <button
+                      onClick={onSearchSubmit}
                       className={`px-4 sm:px-6 lg:px-8 bg-[#F4CBDF] text-[#111216] rounded-[10px] text-[14px] sm:text-[15px] font-medium hover:bg-[#e9b7ce] transition-colors py-2 sm:py-0 ${
                         language === 'ar' ? 'sm:mr-4' : 'sm:ml-4'
                       }`}>

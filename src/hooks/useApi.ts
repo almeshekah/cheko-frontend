@@ -11,7 +11,6 @@ export const useApi = () => {
   } = useTranslation();
 
   const apiPublic = axios.create(options);
-  const apiPrivate = axios.create(options);
 
   // Add a request interceptor
   apiPublic.interceptors.request.use(
