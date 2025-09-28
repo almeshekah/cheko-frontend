@@ -1,15 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import { Home, Map } from './pages';
 import { Navbar } from './components';
-
-import { useCategoryService, useMenuItemService } from './services';
-import { useQuery } from '@tanstack/react-query';
+import {
+  useCategoryService,
+  useMenuItemService,
+  useRestaurantsService,
+} from './services';
 
 function App() {
   const { getCategories } = useCategoryService();
   const { getMenuItem } = useMenuItemService();
+  const { getRestaurants } = useRestaurantsService();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [filterValue, setFilterValue] = useState('');
@@ -17,6 +21,11 @@ function App() {
   const { data: categories } = useQuery({
     queryKey: ['categories'],
     queryFn: () => getCategories(),
+  });
+
+  const { data: restaurants } = useQuery({
+    queryKey: ['restaurants'],
+    queryFn: () => getRestaurants(),
   });
 
   const defaultFilter = categories?.[0]?.name || '';
@@ -73,7 +82,7 @@ function App() {
               path='/'
               element={<Home categories={categories} items={items} />}
             />
-            <Route path='/map' element={<Map />} />
+            <Route path='/map' element={<Map restaurants={restaurants} />} />
           </Routes>
         </main>
       </div>

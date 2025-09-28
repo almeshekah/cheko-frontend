@@ -23,8 +23,7 @@ const MenuItem: FC<MenuItemProps> = ({ item }) => {
   return (
     <>
       <div
-        className='bg-white flex gap-6 p-4 rounded-[8.47px] shadow-sm hover:shadow-md 
-                   transition-shadow cursor-pointer w-full'
+        className='bg-white dark:bg-[#2A2C2D] flex gap-6 p-4 rounded-[8.47px] shadow-sm hover:shadow-md transition-shadow cursor-pointer w-full'
         onClick={() => setIsModalOpen(true)}>
         <div className='flex-shrink-0'>
           <div className='w-[140px] h-[140px] rounded-[16.1px] bg-gray-200 overflow-hidden relative'>
@@ -42,12 +41,12 @@ const MenuItem: FC<MenuItemProps> = ({ item }) => {
 
         <div className='relative flex flex-col justify-between'>
           <div>
-            <div className='text-[#1E1E1E] text-[21.18px] font-medium leading-[25.6px] mb-2'>
+            <div className='text-[#1E1E1E] dark:text-[#D2D2D2] text-[21.18px] font-medium leading-[25.6px] mb-2'>
               {item?.itemName}
             </div>
 
             {item?.itemCalories && (
-              <p className='text-[#1E1E1E] text-[15.55px] font-medium leading-[16.4px] opacity-50 mb-4'>
+              <p className='text-[#1E1E1E] dark:text-[#D2D2D2] text-[15.55px] font-medium leading-[16.4px] opacity-50 mb-4'>
                 {item?.itemCalories} Cal
               </p>
             )}
@@ -61,24 +60,24 @@ const MenuItem: FC<MenuItemProps> = ({ item }) => {
           )}
 
           <div className='flex flex-col items-start sm:flex-row  sm:items-center gap-2'>
-            <div className='text-[#F4CBDF] text-[22.03px] font-medium  '>
+            <div className='text-[#F4CBDF] dark:text-[#979797] text-[22.03px] font-medium  '>
               {item?.itemPrice} SR
             </div>
 
             <div className='flex items-center gap-2'>
               <button
                 onClick={decrementQuantity}
-                className='w-[33.89px] h-[33.04px] bg-[#F4CBDF] rounded-[8.47px] flex items-center justify-center hover:opacity-80 transition-opacity'>
+                className='w-[33.89px] h-[33.04px] text-black bg-[#F4CBDF] dark:bg-transparent border border-[#F4CBDF] rounded-[8.47px] flex items-center justify-center hover:opacity-80 transition-opacity'>
                 <div className='w-[13.55px] h-[1.69px] bg-black'></div>
               </button>
 
-              <span className='text-black text-[12.71px] font-medium min-w-[20px] text-center'>
+              <span className='text-black dark:text-[#7B7B7B] text-[12.71px] font-medium min-w-[20px] text-center'>
                 {quantity}
               </span>
 
               <button
                 onClick={incrementQuantity}
-                className='w-[33.89px] h-[33.04px] bg-[#F4CBDF] rounded-[8.47px] flex items-center justify-center hover:opacity-80 transition-opacity'>
+                className='w-[33.89px] h-[33.04px] bg-[#F4CBDF] dark:bg-transparent border border-[#F4CBDF] rounded-[8.47px] flex items-center justify-center hover:opacity-80 transition-opacity'>
                 <svg
                   width='20.33'
                   height='20.33'
