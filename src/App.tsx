@@ -6,10 +6,10 @@ import { Navbar } from './components';
 function App() {
   return (
     <Router>
-      <div className='min-h-screen bg-gray-50 dark:bg-gray-900 font-inter'>
+      <div className='min-h-screen bg-gray-50 dark:bg-[#111315] font-inter'>
         <Navbar />
 
-        <main className='container mx-auto py-6 font-inter'>
+        <main className='container mx-auto py-6 font-inter px-4 sm:px-0'>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/map' element={<Map />} />
