@@ -12,7 +12,6 @@ export interface props {
 }
 
 const Home: FC<props> = ({ categories, items }) => {
-  // Get the selected category name from items
   const selectedCategoryName =
     items?.[0]?.name || items?.[0]?.name || 'Categories';
 

@@ -13,7 +13,6 @@ function App() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [filterValue, setFilterValue] = useState('');
-  const [shouldFetch, setShouldFetch] = useState(true); // true للتحميل الأول
 
   const { data: categories } = useQuery({
     queryKey: ['categories'],
@@ -23,18 +22,17 @@ function App() {
   const defaultFilter = categories?.[0]?.name || '';
   const currentFilter = filterValue || defaultFilter;
 
-  const { data: items } = useQuery({
-    queryKey: ['getMenuItem', searchQuery, currentFilter],
+  const { data: items, refetch: refetchItems } = useQuery({
+    queryKey: ['getMenuItem'],
     queryFn: () =>
       getMenuItem({
         search: searchQuery || undefined,
         filter: currentFilter || undefined,
       }),
-    enabled: shouldFetch && !!categories,
+    enabled: false,
   });
 
   const filterOptions = [
-    { label: 'All Categories', value: 'all' },
     ...(categories?.map((category) => ({
       label: category.name,
       value: category.name,
@@ -47,19 +45,17 @@ function App() {
 
   const handleFilter = (filterVal: string) => {
     setFilterValue(filterVal === 'all' ? '' : filterVal);
-    handleSearchSubmit();
   };
 
   const handleSearchSubmit = () => {
-    setShouldFetch(true); // تفعيل استدعاء الـ API
+    refetchItems();
   };
 
-  // Reset shouldFetch after successful fetch
   useEffect(() => {
-    if (items && shouldFetch) {
-      setShouldFetch(false);
+    if (categories && !items) {
+      refetchItems();
     }
-  }, [items, shouldFetch]);
+  }, [categories, items, refetchItems]);
 
   return (
     <Router>

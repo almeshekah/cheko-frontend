@@ -12,7 +12,6 @@ export const useApi = () => {
 
   const apiPublic = axios.create(options);
 
-  // Add a request interceptor
   apiPublic.interceptors.request.use(
     function (config: any) {
       config.headers = {
@@ -26,8 +25,6 @@ export const useApi = () => {
       return Promise.reject(error);
     }
   );
-
-  // Add a response interceptor
 
   return { apiPublic };
 };
