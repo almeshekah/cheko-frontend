@@ -43,7 +43,7 @@ const Navbar: FC<NavbarProps> = ({
   ];
 
   return (
-    <nav className='font-inter relative flex items-center'>
+    <nav className='font-inter relative flex items-center z-10'>
       <div
         className='h-[140px] sm:h-[160px] w-full'
         style={{

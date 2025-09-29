@@ -7,3 +7,4 @@ export { default as LanguageToggle } from './LanguageToggle';
 export { default as CategoryItem } from './CategoryItem';
 export { default as MenuItem } from './MenuItem';
 export { default as MenuItemModal } from './MenuItemModal';
+export { default as RestaurantCard } from './RestaurantCard';
