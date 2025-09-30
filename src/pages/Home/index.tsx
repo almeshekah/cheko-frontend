@@ -1,38 +1,59 @@
+/* eslint-disable max-len */
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 
-const Home: FC = () => {
-  const { t } = useTranslation();
+import CategoryItem from '../../components/CategoryItem';
+import MenuItem from '../../components/MenuItem';
+import { CategoryInterfaces } from '../../interfaces';
+import { MenuItemInterfaces } from '../../interfaces/menuItemInterfaces';
+
+export interface props {
+  categories?: CategoryInterfaces[];
+  items?: CategoryInterfaces[];
+}
+
+const Home: FC<props> = ({ categories, items }) => {
+  const selectedCategoryName =
+    items?.[0]?.name || items?.[0]?.name || 'Categories';
 
   return (
-    <div className='bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 text-center font-inter'>
-      <h1 className='text-3xl font-bold text-gray-900 dark:text-white mb-4 font-inter'>
-        🏠 {t('navigation.home')}
-      </h1>
-      <p className='text-gray-600 dark:text-gray-300 mb-8 font-inter'>
-        {t('common.welcome')}
-      </p>
+    <div className=''>
+      <div className='mt-[100px] sm:mt-8'>
+        {categories && categories?.length > 0 && (
+          <div className='flex gap-4 overflow-x-scroll pb-4 scrollbar-hide'>
+            {categories?.map((category: CategoryInterfaces) => (
+              <CategoryItem
+                key={category.name}
+                category={category ?? category}
+              />
+            ))}
+          </div>
+        )}
+        <div className='mt-8 mb-6'>
+          <div className='flex items-baseline gap-4'>
+            <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>
+              {selectedCategoryName}
+            </h2>
+            <div className='flex-1 h-px bg-gray-300 dark:bg-gray-600'></div>
+          </div>
+        </div>
 
-      <div className='mt-8'>
-        <Link
-          to='/map'
-          className='inline-flex items-center px-6 py-3 bg-primary-500 text-white 
-                     font-medium rounded-lg hover:bg-primary-600 transition-colors'>
-          <svg
-            className='w-5 h-5 mr-2'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'>
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7'
-            />
-          </svg>
-          Go to Map
-        </Link>
+        {items?.[0]?.menuItems && items?.[0]?.menuItems.length > 0 && (
+          <div className='grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 justify-items-center lg:justify-items-start '>
+            {items?.[0]?.menuItems.map((item: MenuItemInterfaces) => (
+              <div className='w-full' key={item?.itemName}>
+                <MenuItem
+                  item={{
+                    itemName: item?.itemName || 'Menu Item',
+                    itemPrice: item?.itemPrice || 80,
+                    itemCalories: item?.itemCalories || 200,
+                    itemImageUrl: item?.itemImageUrl,
+                    itemDescription: item?.itemDescription,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

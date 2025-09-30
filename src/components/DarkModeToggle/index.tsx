@@ -7,7 +7,6 @@ const DarkModeToggle: FC = () => {
   const { language } = i18n;
 
   useEffect(() => {
-    // Check if dark mode is already enabled
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia(
       '(prefers-color-scheme: dark)'

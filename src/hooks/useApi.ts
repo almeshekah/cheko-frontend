@@ -1,0 +1,30 @@
+import axios, { AxiosRequestConfig } from 'axios';
+import { useTranslation } from 'react-i18next';
+
+const options: AxiosRequestConfig = {
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+};
+
+export const useApi = () => {
+  const {
+    i18n: { language },
+  } = useTranslation();
+
+  const apiPublic = axios.create(options);
+
+  apiPublic.interceptors.request.use(
+    function (config: any) {
+      config.headers = {
+        'Accept-Language': language,
+        'Content-Type': 'application/json',
+      };
+
+      return config;
+    },
+    function (error) {
+      return Promise.reject(error);
+    }
+  );
+
+  return { apiPublic };
+};

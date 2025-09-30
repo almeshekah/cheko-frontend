@@ -1,1 +1,3 @@
-// Export your interfaces here
+export * from './categoryInterface';
+export * from './menuItemInterfaces';
+export * from './restaurantInterface';
