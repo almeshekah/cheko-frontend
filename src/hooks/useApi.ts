@@ -1,8 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { useTranslation } from 'react-i18next';
 
+// const options: AxiosRequestConfig = {
+//   baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+// };
+
 const options: AxiosRequestConfig = {
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: 'http://localhost:8080/',
 };
 
 export const useApi = () => {

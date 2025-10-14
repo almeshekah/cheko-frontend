@@ -70,11 +70,11 @@ const Navbar: FC<NavbarProps> = ({
                 <div
                   className='flex-1 flex flex-col sm:flex-row items-stretch sm:items-center bg-white dark:bg-gray-700 rounded-[15px] px-3 sm:px-4 py-3 gap-3 sm:gap-0'
                   style={{ boxShadow: '0px 4px 14px 0px rgba(0, 0, 0, 0.05)' }}>
-                  <div className='w-full sm:flex-1'>
+                  <div className='w-full '>
                     <Search onSearch={onSearch} />
                   </div>
                   <div className='hidden sm:block w-px h-10 bg-gray-300 dark:bg-gray-600 mx-4'></div>
-                  <div className='flex flex-col sm:flex-row w-full sm:w-auto gap-3 sm:gap-0'>
+                  <div className='flex justify-between sm:flex-row w-full gap-3 sm:gap-0'>
                     <div className='flex-1 sm:flex-none sm:min-w-[200px]'>
                       <Filter options={filterOptions} onFilter={onFilter} />
                     </div>
